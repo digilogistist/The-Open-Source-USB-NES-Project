@@ -1,0 +1,542 @@
+   1              	# 1 "boot_block.s"
+   1              	// Copyright 2019 Big Time Technology Development Group.
+   0              	
+   0              	
+   0              	
+   2              	
+   3              	  .syntax unified
+   4              	  .cpu cortex-m3
+   5              	  .fpu softvfp
+   6              	  .thumb
+   7              	
+   8              	//-------------------------------------------------------------------------------
+   9 0000 00500020 	init_sp:		.word	0x20005000			
+  10 0004 09000008 	init_pc:		.word	0x08000009			
+  11              	
+  12 0008 7348     					ldr.n	r0, kernel_base
+  13 000a 0168     					ldr		r1, [r0, #0]		
+  14 000c 6D4A     					ldr.n	r2, vec_reg			
+  15 000e 8D46     					mov		sp, r1				
+  16 0010 9060     					str		r0, [r2, #8]		
+  17 0012 4068     					ldr		r0, [r0, #4]		
+  18 0014 0047     					bx		r0					
+  19              					
+  20              	//-------------------------------------------------------------------------------
+  21              	// unlock_fpec
+  22              	
+  23 0016 00BF     					.align
+  24 0018 6B4B     	unlock_fpec:	ldr.n	r3, fpec_base
+  25 001a 1869     					ldr		r0, [r3, #16]	//	control register
+  26 001c 10F08000 					ands	r0, #128		//	test lock bit
+  27 0020 03D0     					beq		skip_unlock
+  28 0022 6A48     					ldr.n	r0, fpec_key1
+  29 0024 5860     					str		r0, [r3, #4]	//	key register
+  30 0026 6A48     					ldr.n	r0, fpec_key2
+  31 0028 5860     					str		r0, [r3, #4]
+  32 002a 7047     	skip_unlock:	bx		lr
+  33              	
+  34              	//-------------------------------------------------------------------------------
+  35              	// flash_halfword
+  36              	
+  37              	//				r0  (= 0x40022000)
+  38              	//				r1	dest. addr
+  39              	//				r2	src. 16-bit data
+  40              	
+  41              					// set the programming bit
+  42              					.align									
+  43 002c 0123     	pgm:			movs	r3, #1							
+  44 002e 0361     					str		r3, [r0, #16]					
+  45              	
+  46              					// write the halfword out
+  47 0030 0A80     					strh	r2, [r1, #00]					
+  48              	
+  49              					// wait for the busy bit to reset
+  50 0032 C368     	wait:			ldr		r3, [r0, #12]					
+  51 0034 13F0010F 					tst		r3, #1							
+  52 0038 FBD1     					bne		wait							
+  53              	
+  54              					// clear the control register bits
+  55 003a 0023     					movs	r3, #0							
+  56 003c 0361     					str		r3, [r0, #16]					
+  57 003e 7047     					bx		lr								
+  58              	
+  59              	//-------------------------------------------------------------------------------
+  60              	// page_erase
+  61              	
+  62              	//				r0	(= 0x40022000)
+  63              	//				r1	dest. addr
+  64              	
+  65              					// erase a page
+  66              					.align									
+  67 0040 0223     	erase:			movs	r3, #2							
+  68 0042 0361     					str		r3, [r0, #16]					
+  69 0044 4161     					str		r1, [r0, #20]					
+  70 0046 4223     					movs	r3, #66							
+  71 0048 0361     					str		r3, [r0, #16]					
+  72 004a F2E7     					b		wait							
+  73              	
+  74              	//-------------------------------------------------------------------------------
+  75              	// kernel flash
+  76              	
+  77              	//				set the retry count to r0
+  78              					.align
+  79 004c 0600     	flash:			movs	r6, r0
+  80 004e 01E0     					b		retry_lp
+  81              	
+  82              					// if not equal, decrement count and try again
+  83 0050 013E     	flash_fail:		subs	r6, #1
+  84 0052 16D0     					beq		rst
+  85              	
+  86              	//				erase flash 0x1000 - 0x7FFF
+  87 0054 5C48     	retry_lp:		ldr.n	r0, fpec_base
+  88 0056 6049     					ldr.n	r1, kernel_base
+  89 0058 604C     					ldr.n	r4, app_base
+  90 005a FFF7F1FF 	erase_lp:		bl		erase
+  91 005e 01F58061 					add		r1, #1024
+  92 0062 A142     					cmp		r1, r4
+  93 0064 F9D3     					bcc		erase_lp
+  94              	
+  95              	//				copy flash 0x8000-0xEFFF -> 0x1000-0x7FFF
+  96 0066 5C49     					ldr.n	r1, kernel_base
+  97 0068 2500     					movs	r5, r4
+  98 006a 2A88     	flash_lp:		ldrh	r2, [r5, #0]
+  99 006c 92B2     					uxth	r2, r2
+ 100 006e FFF7DDFF 					bl		pgm
+ 101              	
+ 102              					// confirm the flashed half word
+ 103 0072 0F88     					ldrh	r7, [r1, #0]
+ 104 0074 BFB2     					uxth	r7, r7
+ 105 0076 BA42     					cmp		r2, r7			//	compare it to the source data
+ 106 0078 EAD1     					bne		flash_fail
+ 107              	
+ 108              					// increment the pointers
+ 109 007a 0235     					adds	r5, #2
+ 110 007c 0231     					adds	r1, #2
+ 111 007e A142     					cmp		r1, r4
+ 112 0080 F3D3     					bcc		flash_lp				
+ 113              	
+ 114              					// NVIC_SystemReset ();
+ 115 0082 BFF34F8F 	rst:			dsb		sy
+ 116 0086 4F49     					ldr		r1,	vec_reg
+ 117 0088 CB68     					ldr		r3, [r1, #12]
+ 118 008a 03F4E062 					and		r2, r3, 0x700
+ 119 008e 544B     					ldr		r3, rval
+ 120 0090 1343     					orrs	r3, r2
+ 121 0092 CB60     					str		r3, [r1, #12]
+ 122 0094 BFF34F8F 					dsb		sy
+ 123              					.align
+ 124 0098 00BF     	ilp:			nop
+ 125 009a FDE7     					b		ilp
+ 126              	
+ 127              	//-------------------------------------------------------------------------------
+ 128              	// sector decrypt and write to flash
+ 129              	
+ 130              	// input:
+ 131              	//				r0	ptr to 512-byte encrypted sector data
+ 132              	//				r1	ptr to dest ptr (only flash addresses allowed) (if null, no data is written)
+ 133              	
+ 134              	// return:
+ 135              	//				r0	result code
+ 136              	
+ 137              	//					0:			invalid data block signature
+ 138              	//					2, 4, 6:	data block failed CRC check
+ 139              	//					3:			good data block
+ 140              	//					5:			good last kernel block
+ 141              	//					7:			good last application block
+ 142              	
+ 143              					.align
+ 144 009c 2DE9F24F 	decrypt:		push	{r1, r4, r5, r6, r7, r8, r9, r10, r11, lr}
+ 145              	
+ 146              	//				load the dest. ptr
+ 147 00a0 0968     					ldr		r1 , [r1, #0]
+ 148              	
+ 149              	//				setup the word count
+ 150 00a2 5FF0800B 					movs	r11, #128
+ 151              	
+ 152              	//				load the sector word
+ 153 00a6 04C8     	sector_lp:		ldmia	r0!, {r2}
+ 154              	
+ 155              	//				load the bit count
+ 156 00a8 5FF0200A 					movs	r10, #32
+ 157              	
+ 158              	//				test the bit going into the LFSR
+ 159 00ac 5FEA7202 	lp:				rors	r2 , #1
+ 160 00b0 0FD3     					bcc		skip
+ 161              	
+ 162              	//				r4		shift register pointer
+ 163              	//				r5		encryption key pointer
+ 164 00b2 4C4C     					ldr.n	r4 , app_RAM_base
+ 165 00b4 0FF64865 					adr		r5 , key
+ 166 00b8 14F58073 					adds	r3 , r4, #256
+ 167 00bc B5E80003 	xor_lp:			ldmia	r5!, {r8, r9}
+ 168 00c0 94E8C000 					ldmia	r4 , {r6, r7}
+ 169 00c4 86EA0806 					eor		r6 , r8
+ 170 00c8 87EA0907 					eor		r7 , r9
+ 171 00cc C0C4     					stmia	r4!, {r6, r7}
+ 172 00ce 9C42     					cmp		r4 , r3
+ 173 00d0 F4D1     					bne		xor_lp
+ 174              	
+ 175              	//				r4		shift register pointer + 256
+ 176              	//				r2		temp bit
+ 177 00d2 444B     	skip:			ldr.n	r3 , app_RAM_base
+ 178 00d4 13F58074 					adds	r4 , r3, #256
+ 179 00d8 14E9C003 	sr_lp:			ldmdb	r4 , {r6, r7, r8, r9}
+ 180 00dc 9218     					adds	r2 , r2
+ 181 00de 5FEA3909 					rrxs	r9 , r9
+ 182 00e2 5FEA3808 					rrxs	r8 , r8
+ 183 00e6 5FEA3707 					rrxs	r7 , r7
+ 184 00ea 5FEA3606 					rrxs	r6 , r6
+ 185 00ee 5FEA3202 					rrxs	r2 , r2
+ 186 00f2 24E9C003 					stmdb	r4!, {r6, r7, r8, r9}
+ 187 00f6 9C42     					cmp		r4 , r3
+ 188 00f8 EED1     					bne		sr_lp
+ 189              	
+ 190              					// repeat the bit count
+ 191 00fa BAF1010A 					subs	r10, #1
+ 192 00fe D5D1     					bne		lp
+ 193              	
+ 194              	// casing the destination address
+ 195              	// addresses inside flash range 8000 - FFFF require a valid data block type header,
+ 196              	// or the routine will early exit without taking any flash or erase action.
+ 197              	// invalid dest. addresses require a "FIRMprov" signanture at the end of the block.
+ 198              	
+ 199              					// range check the destination address for 08008000 - 08010000
+ 200 0100 394B     					ldr.n	r3 , top_flash_addr
+ 201 0102 9942     					cmp		r1 , r3
+ 202 0104 0DD2     					bcs		not_write
+ 203 0106 354B     					ldr.n	r3 , app_base
+ 204 0108 9942     					cmp		r1 , r3
+ 205 010a 0AD3     					bcc		not_write
+ 206              	
+ 207              					// last word of valid address write
+ 208 010c BBF1010F 					cmp		r11, #1
+ 209 0110 32D1     					bne		not_last
+ 210 0112 01BC     					pop		{r0}
+ 211 0114 2F4B     					ldr.n	r3 , CRC_base
+ 212 0116 1C68     					ldr		r4 , [r3, #0]
+ 213 0118 9442     					cmp		r4 , r2
+ 214 011a 08BF     					it		eq
+ 215 011c 10F10100 					addseq	r0 , #1
+ 216 0120 43E0     					b		cleanup
+ 217              	
+ 218              					// last word of invalid address write
+ 219 0122 BBF1010F 	not_write:		cmp		r11, #1
+ 220 0126 06D1     					bne		not_last_2
+ 221 0128 01BC     					pop		{r0}
+ 222 012a 314B     					ldr.n	r3 , init_signature + 4
+ 223 012c 9A42     					cmp		r2 , r3				//	compare for "prov" signature
+ 224 012e 08BF     					it		eq
+ 225 0130 10F10100 					addseq	r0 , #1
+ 226 0134 39E0     					b		cleanup
+ 227              	
+ 228              					// second last word of invalid address write
+ 229 0136 BBF1020F 	not_last_2:		cmp		r11, #2
+ 230 013a 32D1     					bne		no_write
+ 231 013c 0224     					movs	r4 , #2
+ 232 013e 2B4B     					ldr.n	r3 , init_signature + 0
+ 233 0140 9A42     					cmp		r2 , r3				//	compare for "FIRM" signature
+ 234 0142 18BF     					it		ne
+ 235 0144 0020     					movne	r0 , #0
+ 236 0146 30D1     					bne		cleanup				//	early exit if not found
+ 237 0148 10B4     					push	{r4}
+ 238 014a 2AE0     					b		no_write
+ 239              	
+ 240              					// first word of valid address write
+ 241 014c 0024     	first_word:		movs	r4 , #0				//	default value is zero
+ 242 014e 294B     					ldr.n	r3 , data_signature
+ 243 0150 9A42     					cmp		r2 , r3
+ 244 0152 08BF     					it		eq
+ 245 0154 5FF00204 					movseq	r4 , #2
+ 246 0158 284B     					ldr.n	r3 , krnl_signature
+ 247 015a 9A42     					cmp		r2 , r3
+ 248 015c 08BF     					it		eq
+ 249 015e 5FF00404 					movseq	r4 , #4
+ 250 0162 254B     					ldr.n	r3 , apli_signature
+ 251 0164 9A42     					cmp		r2 , r3
+ 252 0166 08BF     					it		eq
+ 253 0168 5FF00604 					movseq	r4 , #6
+ 254 016c 2400     					movs	r4 , r4				//	test for found signatures
+ 255 016e 08BF     					it		eq
+ 256 0170 2046     					moveq	r0 , r4
+ 257 0172 1AD0     					beq		cleanup				//	early exit if none found
+ 258 0174 10B4     					push	{r4}
+ 259 0176 14E0     					b		no_write
+ 260              	
+ 261              					// do final check for first word
+ 262 0178 BBF1800F 	not_last:		cmp		r11, #128
+ 263 017c E6D0     					beq		first_word
+ 264              	
+ 265              	// at this point, the data (r2) is bound to flash.
+ 266              	// the flash page is erased if the dest. addr. is 1KB aligned.
+ 267              	// the data is split into 2 half-word writes to flash.
+ 268              	// the programmed address is read back & pumped into a CRC register.
+ 269              	
+ 270              	//				r0  (= 0x40022000)
+ 271              	//				r1	dest. addr
+ 272              	//				r2	src. 16-bit data
+ 273              	
+ 274              	//				if r1 & 0x3FF then erase sector
+ 275 017e 01B4     					push	{r0}
+ 276 0180 1148     					ldr.n	r0 , fpec_base
+ 277 0182 11F47F7F 					tst		r1 , 0x03FC
+ 278 0186 08BF     					it		eq
+ 279 0188 FFF75AFF 					bleq	erase
+ 280              	
+ 281              					// burn the data to flash
+ 282 018c FFF74EFF 					bl		pgm
+ 283 0190 0231     					adds	r1 , #2
+ 284 0192 120C     					lsrs	r2 , #16
+ 285 0194 FFF74AFF 					bl		pgm
+ 286 0198 0239     					subs	r1 , #2
+ 287 019a 01BC     					pop		{r0}
+ 288              	
+ 289              					// read the data back and pump it into the CRC register
+ 290 019c 0D4B     					ldr.n	r3 , CRC_base
+ 291 019e 04C9     					ldmia	r1!, {r2}				//	read the data back
+ 292 01a0 1A60     					str		r2 , [r3, #0]			//	send it to the CRC data register
+ 293              	
+ 294              					// sector loop
+ 295 01a2 BBF1010B 	no_write:		subs	r11, #1
+ 296 01a6 7FF47EAF 					bne		sector_lp
+ 297              	
+ 298              					// check for code 3
+ 299 01aa 0328     	cleanup:		cmp		r0 , #3
+ 300 01ac 06D0     					beq		no_wipe
+ 301              	
+ 302              					// delete shift register buffer on error or end of transfer
+ 303 01ae 0023     					movs	r3 , #0
+ 304 01b0 0C4A     					ldr.n	r2 , app_RAM_base
+ 305 01b2 12F58074 					adds	r4 , r2, #256
+ 306 01b6 08C2     	c_lp:			stmia	r2!, {r3}
+ 307 01b8 A242     					cmp		r2 , r4
+ 308 01ba FCD1     					bne		c_lp
+ 309              	
+ 310              					// update the source pointer
+ 311 01bc 04BC     	no_wipe:		pop		{r2}
+ 312 01be 1160     					str		r1 , [r2, #0]
+ 313 01c0 BDE8F08F 					pop		{r4, r5, r6, r7, r8, r9, r10, r11, pc}
+ 314              	
+ 315              	//-------------------------------------------------------------------------------
+ 316              					.align
+ 317 01c4 00ED00E0 	vec_reg:		.word	0xE000ED00
+ 318 01c8 00200240 	fpec_base:		.word	0x40022000
+ 319 01cc 23016745 	fpec_key1:		.word	0x45670123
+ 320 01d0 AB89EFCD 	fpec_key2:		.word	0xCDEF89AB
+ 321 01d4 00300240 	CRC_base:		.word	0x40023000
+ 322 01d8 00100008 	kernel_base:	.word	0x08001000
+ 323 01dc 00800008 	app_base:		.word	0x08008000
+ 324 01e0 0400FA05 	rval:			.word	0x05FA0004
+ 325 01e4 00280020 	app_RAM_base:	.word	0x20002800				//	@ 10KB offset in RAM
+ 326 01e8 00000108 	top_flash_addr:	.word	0x08010000				//	the packages are trusted to not turf over the 4KB save area 
+ 327 01ec 4649524D 	init_signature:	.ascii	"FIRMprov"
+ 327      70726F76 
+ 328 01f4 42745464 	data_signature:	.ascii	"BtTd"
+ 329 01f8 41706C69 	apli_signature:	.ascii	"Apli"
+ 330 01fc 4B726E6C 	krnl_signature:	.ascii	"Krnl"
+ 331              	
+ 332              	//-------------------------------------------------------------------------------
+ 333              	
+ 334 0200 00000000 					.org	0x09AC
+ 334      00000000 
+ 334      00000000 
+ 334      00000000 
+ 334      00000000 
+ 335              	
+ 336              					// functions
+ 337 09ac 19000008 					.word	0x08000001 + unlock_fpec
+ 338 09b0 9D000008 					.word	0x08000001 + decrypt
+ 339 09b4 41000008 					.word	0x08000001 + erase
+ 340 09b8 2D000008 					.word	0x08000001 + pgm
+ 341 09bc 4D000008 					.word	0x08000001 + flash					
+ 342              	
+ 343              					// firmware dir entry
+ 344 09c0 4649524D 					.ascii	"FIRMWAREBIN"			//	filename + extension
+ 344      57415245 
+ 344      42494E
+ 345 09cb 06       					.byte	6						//	hidden + system attributes
+ 346 09cc 18       					.byte	0x18					//	bit 3 for lowercase filename; bit 4 for lowercase extension
+ 347 09cd AA       					.byte	0xAA					//	creation time centi-seconds
+ 348 09ce 6D1F     					.hword	0x1F6D					//	creation time
+ 349 09d0 764E     					.hword	0x4E76					//	creation date
+ 350 09d2 764E     					.hword	0x4E76					//	last access date
+ 351 09d4 0000     					.hword	0						//	starting cluster hi
+ 352 09d6 6E1F     					.hword	0x1F6E					//	modification time
+ 353 09d8 764E     					.hword	0x4E76					//	modification date
+ 354 09da 0008     					.hword	0x0800					//	starting cluster
+ 355 09dc 00800000 					.word	32768					//	file size
+ 356              	
+ 357              					// security dir entry
+ 358 09e0 53454355 					.ascii	"SECURITYBIN"			//	filename + extension
+ 358      52495459 
+ 358      42494E
+ 359 09eb 07       					.byte	7						//	hidden + system attributes
+ 360 09ec 18       					.byte	0x18					//	bit 3 for lowercase filename; bit 4 for lowercase extension
+ 361 09ed AA       					.byte	0xAA					//	creation time centi-seconds
+ 362 09ee 6D1F     					.hword	0x1F6D					//	creation time
+ 363 09f0 764E     					.hword	0x4E76					//	creation date
+ 364 09f2 764E     					.hword	0x4E76					//	last access date
+ 365 09f4 0000     					.hword	0						//	starting cluster hi
+ 366 09f6 6E1F     					.hword	0x1F6E					//	modification time
+ 367 09f8 764E     					.hword	0x4E76					//	modification date
+ 368 09fa 0010     					.hword	0x1000					//	starting cluster
+ 369 09fc 00030000 					.word	768						//	file size
+ 370              	
+ 371              					// boot sector
+ 372 0a00 EB3C90   					.byte	0xEB, 0x3C, 0x90		//	near jump
+ 373 0a03 4D53444F 					.ascii	"MSDOS5.0"				//	OEM string
+ 373      53352E30 
+ 374 0a0b 0002     					.byte	0, 2					//	bytes per sector
+ 375 0a0d 01       					.byte	1						//	sectors per cluster
+ 376 0a0e 0008     					.hword	2048					//	boot and reserved sectors
+ 377 0a10 01       					.byte	1						//	number of FATs
+ 378 0a11 2000     					.byte	32, 0					//	number of root directory entries
+ 379 0a13 0000     					.byte	0, 0					//	reserved
+ 380 0a15 F8       					.byte	0xF8					//	media descriptor
+ 381 0a16 0008     					.hword	2048					//	sectors per FAT
+ 382 0a18 0800     					.hword	8						//	sectors per track
+ 383 0a1a 0800     					.hword	8						//	number of heads
+ 384 0a1c 00000000 					.word	0						//	hidden sectors
+ 385 0a20 F20F0100 					.word	0x10FF2					//	total sectors
+ 386 0a24 80       					.byte	0x80					//	physical drive
+ 387 0a25 00       					.byte	0						//	reserved
+ 388 0a26 29       					.byte	0x29					//	boot record signature
+ 389 0a27 62547444 					.ascii	"bTtD"					//	serial number
+ 390 0a2b 42545444 					.ascii	"BTTD Group "			//	volume label
+ 390      2047726F 
+ 390      757020
+ 391 0a36 46415431 					.ascii	"FAT16   "				//	FAT system in text
+ 391      36202020 
+ 392 0a3e 0E1F     					.byte	0x0E, 0x1F
+ 393 0a40 BE5B7CAC 					.byte	0xBE, 0x5B, 0x7C, 0xAC, 0x22, 0xC0, 0x74, 0x0B,	0x56, 0xB4, 0x0E, 0xBB, 0x07, 0x00, 0xCD,
+ 393      22C0740B 
+ 393      56B40EBB 
+ 393      0700CD10 
+ 394 0a50 5EEBF032 					.byte	0x5E, 0xEB, 0xF0, 0x32,	0xE4, 0xCD, 0x16, 0xCD, 0x19, 0xEB, 0xFE, 0x54, 0x68, 0x69, 0x73,
+ 394      E4CD16CD 
+ 394      19EBFE54 
+ 394      68697320 
+ 395 0a60 6973206E 					.byte	0x69, 0x73, 0x20, 0x6E, 0x6F, 0x74, 0x20, 0x61, 0x20, 0x62, 0x6F, 0x6F,	0x74, 0x61, 0x62,
+ 395      6F742061 
+ 395      20626F6F 
+ 395      7461626C 
+ 396 0a70 65206469 					.byte	0x65, 0x20, 0x64, 0x69, 0x73, 0x6B, 0x2E, 0x20,	0x20, 0x50, 0x6C, 0x65, 0x61, 0x73, 0x65,
+ 396      736B2E20 
+ 396      20506C65 
+ 396      61736520 
+ 397 0a80 696E7365 					.byte	0x69, 0x6E, 0x73, 0x65,	0x72, 0x74, 0x20, 0x61, 0x20, 0x62, 0x6F, 0x6F, 0x74, 0x61, 0x62,
+ 397      72742061 
+ 397      20626F6F 
+ 397      7461626C 
+ 398 0a90 6520666C 					.byte	0x65, 0x20, 0x66, 0x6C, 0x6F, 0x70, 0x70, 0x79, 0x20, 0x61, 0x6E, 0x64,	0x0D, 0x0A, 0x70,
+ 398      6F707079 
+ 398      20616E64 
+ 398      0D0A7072 
+ 399 0aa0 65737320 					.byte	0x65, 0x73, 0x73, 0x20, 0x61, 0x6E, 0x79, 0x20,	0x6B, 0x65, 0x79, 0x20, 0x74, 0x6F, 0x20,
+ 399      616E7920 
+ 399      6B657920 
+ 399      746F2074 
+ 400 0ab0 72792061 					.byte	0x72, 0x79, 0x20, 0x61,	0x67, 0x61, 0x69, 0x6E, 0x20, 0x2E, 0x2E, 0x2E, 0x20, 0x0D, 0x0A,
+ 400      6761696E 
+ 400      202E2E2E 
+ 400      200D0A00 
+ 401 0ac0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 401      00000000 
+ 401      00000000 
+ 401      00000000 
+ 402 0ad0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 402      00000000 
+ 402      00000000 
+ 402      00000000 
+ 403 0ae0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 403      00000000 
+ 403      00000000 
+ 403      00000000 
+ 404 0af0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 404      00000000 
+ 404      00000000 
+ 404      00000000 
+ 405 0b00 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 405      00000000 
+ 405      00000000 
+ 405      00000000 
+ 406 0b10 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 406      00000000 
+ 406      00000000 
+ 406      00000000 
+ 407 0b20 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 407      00000000 
+ 407      00000000 
+ 407      00000000 
+ 408 0b30 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 408      00000000 
+ 408      00000000 
+ 408      00000000 
+ 409 0b40 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 409      00000000 
+ 409      00000000 
+ 409      00000000 
+ 410 0b50 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 410      00000000 
+ 410      00000000 
+ 410      00000000 
+ 411 0b60 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 411      00000000 
+ 411      00000000 
+ 411      00000000 
+ 412 0b70 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 412      00000000 
+ 412      00000000 
+ 412      00000000 
+ 413 0b80 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 413      00000000 
+ 413      00000000 
+ 413      00000000 
+ 414 0b90 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 414      00000000 
+ 414      00000000 
+ 414      00000000 
+ 415 0ba0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 415      00000000 
+ 415      00000000 
+ 415      00000000 
+ 416 0bb0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 416      00000000 
+ 416      00000000 
+ 416      00000000 
+ 417 0bc0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 417      00000000 
+ 417      00000000 
+ 417      00000000 
+ 418 0bd0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 418      00000000 
+ 418      00000000 
+ 418      00000000 
+ 419 0be0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00,
+ 419      00000000 
+ 419      00000000 
+ 419      00000000 
+ 420 0bf0 00000000 					.byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x55,
+ 420      00000000 
+ 420      00000000 
+ 420      000055AA 
+ 421              	
+ 422              					// product ID
+ 423 0c00 42545444 	security:		.ascii	"BTTD Grp"				//	company name
+ 423      20477270 
+ 424 0c08 424C5545 					.ascii	"BLUE-PILL BOOTUP"		//	product
+ 424      2D50494C 
+ 424      4C20424F 
+ 424      4F545550 
+ 425 0c18 302E3032 					.ascii	"0.02"					//	version
+ 426              	
+ 427              					// security block - set up by the provisioning tool
+ 428 0c1c 00000000 					.org	0x0F00					//	authentication block
+ 428      00000000 
+ 428      00000000 
+ 428      00000000 
+ 428      00000000 
+ 429 0f00 00000000 	key:			.org	0x1000					//	encryption key
+ 429      00000000 
+ 429      00000000 
+ 429      00000000 
+ 429      00000000 
