@@ -1,0 +1,14 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 74AHCT1G32
+D Quad Or 2 inputs
+K TTL Or2
+$ENDCMP
+#
+$CMP 74AHCT1G79
+D Dual D FlipFlop, Set & Reset
+K TTL DFF
+F 74xx/74hc_hct74.pdf
+$ENDCMP
+#
+#End Doc Library

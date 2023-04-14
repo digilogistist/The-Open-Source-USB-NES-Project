@@ -1,0 +1,39 @@
+### Module positions - created on Thu 13 Apr 2023 10:52:40 PM ###
+### Printed by Pcbnew version pcbnew 5.1.5+dfsg1-2build2
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val          Package                                           PosX       PosY       Rot  Side
+C1        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   143.7250  -118.5000    0.0000  top
+C2        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   120.5750   -98.2000  180.0000  top
+C3        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   173.2000   -93.6250   90.0000  top
+C4        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   166.8750   -91.9000    0.0000  top
+C5        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   165.8000  -115.5000    0.0000  top
+C6        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   139.5250   -92.0000  180.0000  top
+C7        10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   121.5000  -104.9000   90.0000  top
+C8        .1uF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder    98.6000  -121.9500  180.0000  top
+C9        .1uF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   154.6000  -118.1250  270.0000  top
+C10       .1uF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   164.0000  -103.6750  270.0000  top
+C11       47uF         CP_Elec_4x5.3                                  96.1500  -126.1000   90.0000  top
+C12       .1uF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   116.6250   -99.6000    0.0000  top
+C13       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   109.9750   -91.8000    0.0000  top
+C14       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   120.8250  -108.8000  180.0000  top
+C15       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   133.7000  -106.2000  270.0000  top
+C16       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   119.8000  -125.9000  180.0000  top
+C17       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   136.1750  -105.3000    0.0000  top
+C18       10nF         C_0603_1608Metric_Pad1.05x0.95mm_HandSolder   109.7000  -120.8250  270.0000  top
+IC3       ATTINY13A-P  SOIC-8_3.9x4.9mm_P1.27mm                      101.8000  -115.9000    0.0000  top
+U1        74HC00       TSSOP-14_4.4x5mm_P0.65mm                      161.1000   -94.0000    0.0000  top
+U3        4053         TSSOP-16_4.4x5mm_P0.65mm                      138.0000  -120.2000    0.0000  top
+U4        74LS574      TSSOP-20_4.4x6.5mm_P0.65mm                    161.1000  -119.9000    0.0000  top
+U5        74HC590      TSSOP-16_4.4x5mm_P0.65mm                      137.5000   -95.8000    0.0000  top
+U6        74LS574      TSSOP-20_4.4x6.5mm_P0.65mm                    126.2000  -122.6000  180.0000  top
+U8        74HC590      TSSOP-16_4.4x5mm_P0.65mm                      142.0000  -103.4000    0.0000  top
+U9        74LS574      TSSOP-20_4.4x6.5mm_P0.65mm                    126.4000   -95.1000  180.0000  top
+U10       74LS139      TSSOP-16_4.4x5mm_P0.65mm                      170.3000   -98.3000    0.0000  top
+U11       74LS245      TSSOP-20_4.4x6.5mm_P0.65mm                    114.1000  -122.9000   90.0000  top
+U12       74AHCT1G79   SOT-353_SC-70-5                               132.4000  -116.0000  180.0000  top
+U13       74LS157      TSSOP-16_4.4x5mm_P0.65mm                      114.6000   -94.7000  270.0000  top
+U14       74LS02       TSSOP-14_4.4x5mm_P0.65mm                      136.8000  -111.8000  270.0000  top
+U15       74LS377      TSSOP-20_4.4x6.5mm_P0.65mm                    126.2000  -111.7000   90.0000  top
+U17       74LS157      TSSOP-16_4.4x5mm_P0.65mm                      126.4000  -103.5000  180.0000  top
+## End
