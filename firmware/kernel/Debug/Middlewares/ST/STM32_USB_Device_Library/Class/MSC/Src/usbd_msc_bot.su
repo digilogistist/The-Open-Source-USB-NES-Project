@@ -1,0 +1,10 @@
+usbd_msc_bot.c:105:6:MSC_BOT_Init	24	static
+usbd_msc_bot.c:133:6:MSC_BOT_Reset	24	static
+usbd_msc_bot.c:153:6:MSC_BOT_DeInit	24	static
+usbd_msc_bot.c:166:6:MSC_BOT_DataIn	24	static
+usbd_msc_bot.c:199:6:MSC_BOT_DataOut	24	static
+usbd_msc_bot.c:232:14:MSC_BOT_CBW_Decode	24	static
+usbd_msc_bot.c:299:14:MSC_BOT_SendData	32	static
+usbd_msc_bot.c:320:7:MSC_BOT_SendCSW	24	static
+usbd_msc_bot.c:349:14:MSC_BOT_Abort	24	static
+usbd_msc_bot.c:378:7:MSC_BOT_CplClrFeature	24	static
