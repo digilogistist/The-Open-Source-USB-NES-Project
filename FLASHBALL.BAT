@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility\ST-LINK_CLI.exe" -c UR -ME -P firmware\boot_block\boot_block.bin  0x08000000 -P firmware\kernel\Debug\kernel.bin 0x08001000 -P firmware\application\Debug\application.bin 0x08008000 -P firmware\BCMTABLE.BIN 0x0800EC00 -P firmware\OVERRIDE.BIN 0x0800F000 -P firmware\DEMO.BIN 0x08010000

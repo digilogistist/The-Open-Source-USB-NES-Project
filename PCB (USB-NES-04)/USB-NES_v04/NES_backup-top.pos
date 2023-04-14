@@ -1,0 +1,13 @@
+### Module positions - created on Thu 13 Apr 2023 11:11:22 PM ###
+### Printed by Pcbnew version pcbnew 5.1.5+dfsg1-2build2
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val          Package                                           PosX       PosY       Rot  Side
+Q1        TSM500P02CX  SOT-23                                        505.7000  -321.7500   90.0000  top
+R1        10K          R_1206_3216Metric_Pad1.42x1.75mm_HandSolder   504.8000  -334.9500   90.0000  top
+R2        10K          R_1206_3216Metric_Pad1.42x1.75mm_HandSolder   508.2625  -326.4500    0.0000  top
+R3        10K          R_1206_3216Metric_Pad1.42x1.75mm_HandSolder   508.2500  -339.2500    0.0000  top
+U1        4052         TSSOP-16_4.4x5mm_P0.65mm                      554.7000  -334.1500   90.0000  top
+U3        4052         TSSOP-16_4.4x5mm_P0.65mm                      522.7000  -334.1500   90.0000  top
+U4        4053         TSSOP-16_4.4x5mm_P0.65mm                      539.0000  -334.1500   90.0000  top
+## End

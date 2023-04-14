@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name BLA)(type KiCad)(uri /media/mint/SDXC/PCB/blue_pill.pretty)(options "")(descr ""))
+  (lib (name bla2)(type KiCad)(uri /media/mint/SDXC/PCB/custom.pretty)(options "")(descr ""))
+)

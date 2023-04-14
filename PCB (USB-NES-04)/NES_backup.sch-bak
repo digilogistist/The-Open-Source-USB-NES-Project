@@ -1,0 +1,1053 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L NES_backup-rescue:GND #PWR01
+U 1 1 5BD6C51B
+P 2450 2500
+F 0 "#PWR01" H 2450 2250 50  0001 C CNN
+F 1 "GND" H 2450 2300 50  0000 C CNN
+F 2 "" H 2450 2500 50  0000 C CNN
+F 3 "" H 2450 2500 50  0000 C CNN
+	1    2450 2500
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4900 3050
+NoConn ~ 3200 1650
+Text GLabel 4900 1650 1    60   Input ~ 0
+A8
+Text GLabel 4800 1650 1    60   Input ~ 0
+A9
+Text GLabel 4700 1650 1    60   Input ~ 0
+A10
+Text GLabel 4600 1650 1    60   Input ~ 0
+A11
+Text GLabel 4500 1650 1    60   Input ~ 0
+A12
+Text GLabel 4400 1650 1    60   Input ~ 0
+A13
+Text GLabel 4300 1650 1    60   Input ~ 0
+A14
+Text GLabel 4200 1650 1    60   Input ~ 0
+~ROMSEL
+Text GLabel 4100 1650 1    60   Input ~ 0
+M2
+Text GLabel 4000 1650 1    60   Input ~ 0
+R/W
+Text GLabel 3900 1650 1    60   Input ~ 0
+~IRQ
+NoConn ~ 3800 1650
+NoConn ~ 3700 1650
+Text GLabel 3600 1650 1    60   Input ~ 0
+NT_A10
+Text GLabel 3500 1650 1    60   Input ~ 0
+~RD
+Text GLabel 3400 1650 1    60   Input ~ 0
+~WR
+Text GLabel 4700 3050 3    60   Input ~ 0
+A0
+Text GLabel 4600 3050 3    60   Input ~ 0
+A1
+Text GLabel 4500 3050 3    60   Input ~ 0
+A2
+Text GLabel 4400 3050 3    60   Input ~ 0
+A3
+Text GLabel 4300 3050 3    60   Input ~ 0
+A4
+Text GLabel 4200 3050 3    60   Input ~ 0
+A5
+Text GLabel 4100 3050 3    60   Input ~ 0
+A6
+Text GLabel 4000 3050 3    60   Input ~ 0
+A7
+Text GLabel 6700 5200 3    60   Input ~ 0
+D0
+Text GLabel 6400 5200 3    60   Input ~ 0
+D1
+Text GLabel 3700 3050 3    60   Input ~ 0
+D2
+Text GLabel 3600 3050 3    60   Input ~ 0
+D3
+Text GLabel 5050 5650 3    60   Input ~ 0
+D4
+Text GLabel 4550 5650 3    60   Input ~ 0
+D5
+Text GLabel 3150 5650 3    60   Input ~ 0
+D6
+Text GLabel 2650 5650 3    60   Input ~ 0
+D7
+NoConn ~ 5450 2400
+NoConn ~ 5450 2300
+Wire Wire Line
+	3000 3050 3000 3900
+$Comp
+L NES_backup-rescue:TSM500P02CX Q1
+U 1 1 5BDDCDF9
+P 7000 1750
+F 0 "Q1" V 6900 1600 50  0000 R CNN
+F 1 "TSM500P02CX" V 7250 2000 50  0000 R CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7200 1850 50  0001 C CNN
+F 3 "" H 7000 1750 50  0000 C CNN
+	1    7000 1750
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:BLUE_PILL U2
+U 1 1 5BDDDE7E
+P 3950 2350
+F 0 "U2" H 3950 2500 60  0000 C CNN
+F 1 "BLUE_PILL" H 3950 2400 60  0000 C CNN
+F 2 "BLA:blue_pill" H 4000 2100 60  0001 C CNN
+F 3 "" H 4000 2100 60  0001 C CNN
+	1    3950 2350
+	0    1    1    0   
+$EndComp
+NoConn ~ 5450 2200
+Wire Wire Line
+	2500 2500 2450 2500
+Wire Wire Line
+	2450 2500 2450 2400
+Wire Wire Line
+	3100 1650 2450 1650
+Wire Wire Line
+	2500 2000 2450 2000
+Connection ~ 2450 2000
+Wire Wire Line
+	2500 2100 2450 2100
+Connection ~ 2450 2100
+Wire Wire Line
+	2500 2200 2450 2200
+Connection ~ 2450 2200
+Wire Wire Line
+	2500 2300 2450 2300
+Connection ~ 2450 2300
+Wire Wire Line
+	2500 2400 2450 2400
+Connection ~ 2450 2400
+NoConn ~ 5450 2600
+Wire Wire Line
+	5450 2500 5950 2500
+Wire Wire Line
+	2450 2000 2450 1650
+Wire Wire Line
+	2450 2100 2450 2000
+Wire Wire Line
+	2450 2200 2450 2100
+Wire Wire Line
+	2450 2300 2450 2200
+Wire Wire Line
+	2450 2400 2450 2300
+$Comp
+L 4xxx_IEEE:4052 U1
+U 1 1 63ED6032
+P 2850 4600
+F 0 "U1" H 2950 5150 50  0000 C CNN
+F 1 "4052" H 3000 5050 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 2850 4600 50  0001 C CNN
+F 3 "" H 2850 4600 50  0001 C CNN
+	1    2850 4600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L 4xxx_IEEE:4052 U3
+U 1 1 63ED665C
+P 4750 4600
+F 0 "U3" H 4850 5150 50  0000 C CNN
+F 1 "4052" H 4900 5050 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 4750 4600 50  0001 C CNN
+F 3 "" H 4750 4600 50  0001 C CNN
+	1    4750 4600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0101
+U 1 1 63F51A16
+P 4100 4600
+F 0 "#PWR0101" H 4100 4350 50  0001 C CNN
+F 1 "GND" H 4000 4500 50  0000 C CNN
+F 2 "" H 4100 4600 50  0000 C CNN
+F 3 "" H 4100 4600 50  0000 C CNN
+	1    4100 4600
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0102
+U 1 1 63F535CF
+P 4100 4500
+F 0 "#PWR0102" H 4100 4250 50  0001 C CNN
+F 1 "GND" H 4100 4350 50  0000 C CNN
+F 2 "" H 4100 4500 50  0000 C CNN
+F 3 "" H 4100 4500 50  0000 C CNN
+	1    4100 4500
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0103
+U 1 1 63F53BD6
+P 4100 4400
+F 0 "#PWR0103" H 4100 4250 50  0001 C CNN
+F 1 "VCC" H 4200 4500 50  0000 C CNN
+F 2 "" H 4100 4400 50  0000 C CNN
+F 3 "" H 4100 4400 50  0000 C CNN
+	1    4100 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0104
+U 1 1 63F5CF1C
+P 2200 4600
+F 0 "#PWR0104" H 2200 4350 50  0001 C CNN
+F 1 "GND" H 2100 4500 50  0000 C CNN
+F 2 "" H 2200 4600 50  0000 C CNN
+F 3 "" H 2200 4600 50  0000 C CNN
+	1    2200 4600
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0105
+U 1 1 63F5CF22
+P 2200 4500
+F 0 "#PWR0105" H 2200 4250 50  0001 C CNN
+F 1 "GND" H 2200 4350 50  0000 C CNN
+F 2 "" H 2200 4500 50  0000 C CNN
+F 3 "" H 2200 4500 50  0000 C CNN
+	1    2200 4500
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0106
+U 1 1 63F5CF28
+P 2200 4400
+F 0 "#PWR0106" H 2200 4250 50  0001 C CNN
+F 1 "VCC" H 2300 4500 50  0000 C CNN
+F 2 "" H 2200 4400 50  0000 C CNN
+F 3 "" H 2200 4400 50  0000 C CNN
+	1    2200 4400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 3500 3500 3050
+Wire Wire Line
+	3400 3600 3400 3050
+Wire Wire Line
+	3300 4000 3300 3700
+Wire Wire Line
+	3300 3700 3300 3050
+$Comp
+L NES_backup-rescue:GND #PWR0107
+U 1 1 63FA669F
+P 4350 5550
+F 0 "#PWR0107" H 4350 5300 50  0001 C CNN
+F 1 "GND" V 4350 5350 50  0000 C CNN
+F 2 "" H 4350 5550 50  0000 C CNN
+F 3 "" H 4350 5550 50  0000 C CNN
+	1    4350 5550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0108
+U 1 1 63FA90C2
+P 2450 5200
+F 0 "#PWR0108" H 2450 4950 50  0001 C CNN
+F 1 "GND" V 2450 5000 50  0000 C CNN
+F 2 "" H 2450 5200 50  0000 C CNN
+F 3 "" H 2450 5200 50  0000 C CNN
+	1    2450 5200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 5200 4150 5450
+Wire Wire Line
+	4150 5450 2250 5450
+Wire Wire Line
+	2250 5450 2250 5200
+Wire Wire Line
+	2900 3050 2900 3700
+Wire Wire Line
+	2900 3700 1950 3700
+Wire Wire Line
+	1950 3700 1950 5450
+Wire Wire Line
+	1950 5450 2250 5450
+Connection ~ 2250 5450
+Wire Wire Line
+	4250 5200 4250 5550
+Wire Wire Line
+	4250 5550 2350 5550
+Wire Wire Line
+	2350 5550 2350 5200
+Wire Wire Line
+	2800 3050 2800 3600
+Wire Wire Line
+	2800 3600 1850 3600
+Wire Wire Line
+	1850 3600 1850 5550
+Wire Wire Line
+	1850 5550 2350 5550
+Connection ~ 2350 5550
+$Comp
+L 4xxx_IEEE:4053 U4
+U 1 1 63ED74EE
+P 6550 4600
+F 0 "U4" H 6550 3785 50  0000 C CNN
+F 1 "4053" H 6550 3876 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 6550 4600 50  0001 C CNN
+F 3 "" H 6550 4600 50  0001 C CNN
+	1    6550 4600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR05
+U 1 1 5BDDCF51
+P 5950 1650
+F 0 "#PWR05" H 5950 1500 50  0001 C CNN
+F 1 "VCC" H 5950 1850 50  0000 C CNN
+F 2 "" H 5950 1650 50  0000 C CNN
+F 3 "" H 5950 1650 50  0000 C CNN
+	1    5950 1650
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:CP C1
+U 1 1 63ED2073
+P 5950 1800
+F 0 "C1" H 6050 1700 50  0000 L CNN
+F 1 "CP" H 5800 1700 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 5988 1650 50  0001 C CNN
+F 3 "~" H 5950 1800 50  0001 C CNN
+	1    5950 1800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0109
+U 1 1 63ED3E85
+P 5950 1950
+F 0 "#PWR0109" H 5950 1700 50  0001 C CNN
+F 1 "GND" H 5950 1800 50  0000 C CNN
+F 2 "" H 5950 1950 50  0000 C CNN
+F 3 "" H 5950 1950 50  0000 C CNN
+	1    5950 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0110
+U 1 1 640442C9
+P 7000 5200
+F 0 "#PWR0110" H 7000 4950 50  0001 C CNN
+F 1 "GND" V 7050 5250 50  0000 C CNN
+F 2 "" H 7000 5200 50  0000 C CNN
+F 3 "" H 7000 5200 50  0000 C CNN
+	1    7000 5200
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0111
+U 1 1 64052514
+P 6100 5200
+F 0 "#PWR0111" H 6100 4950 50  0001 C CNN
+F 1 "GND" V 6100 5000 50  0000 C CNN
+F 2 "" H 6100 5200 50  0000 C CNN
+F 3 "" H 6100 5200 50  0000 C CNN
+	1    6100 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 5200 6800 5450
+Wire Wire Line
+	6500 5200 6500 5550
+$Comp
+L NES_backup-rescue:R_Small R3
+U 1 1 6406D7FD
+P 7000 5550
+F 0 "R3" H 6850 5550 50  0000 L CNN
+F 1 "10K" H 6800 5450 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7000 5550 50  0001 C CNN
+F 3 "" H 7000 5550 50  0000 C CNN
+	1    7000 5550
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:R_Small R2
+U 1 1 640746D9
+P 7000 5450
+F 0 "R2" H 7050 5450 50  0000 L CNN
+F 1 "10K" H 7050 5350 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7000 5450 50  0001 C CNN
+F 3 "" H 7000 5450 50  0000 C CNN
+	1    7000 5450
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	7100 5200 7100 5450
+Connection ~ 7100 5450
+Wire Wire Line
+	7100 5450 7100 5550
+Connection ~ 7100 5550
+Wire Wire Line
+	6900 5450 6800 5450
+Connection ~ 6800 5450
+Wire Wire Line
+	6900 5550 6500 5550
+Connection ~ 6500 5550
+Wire Wire Line
+	7100 5550 7100 5650
+$Comp
+L NES_backup-rescue:VCC #PWR0112
+U 1 1 640452D1
+P 7100 5650
+F 0 "#PWR0112" H 7100 5500 50  0001 C CNN
+F 1 "VCC" V 7100 5850 50  0000 C CNN
+F 2 "" H 7100 5650 50  0000 C CNN
+F 3 "" H 7100 5650 50  0000 C CNN
+	1    7100 5650
+	-1   0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0113
+U 1 1 64098C90
+P 6000 4600
+F 0 "#PWR0113" H 6000 4350 50  0001 C CNN
+F 1 "GND" H 5900 4500 50  0000 C CNN
+F 2 "" H 6000 4600 50  0000 C CNN
+F 3 "" H 6000 4600 50  0000 C CNN
+	1    6000 4600
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0114
+U 1 1 64098C96
+P 6000 4500
+F 0 "#PWR0114" H 6000 4250 50  0001 C CNN
+F 1 "GND" H 6000 4350 50  0000 C CNN
+F 2 "" H 6000 4500 50  0000 C CNN
+F 3 "" H 6000 4500 50  0000 C CNN
+	1    6000 4500
+	0    1    -1   0   
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0115
+U 1 1 64098C9C
+P 6000 4400
+F 0 "#PWR0115" H 6000 4250 50  0001 C CNN
+F 1 "VCC" H 6100 4500 50  0000 C CNN
+F 2 "" H 6000 4400 50  0000 C CNN
+F 3 "" H 6000 4400 50  0000 C CNN
+	1    6000 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:Jumper_NO_Small JP1
+U 1 1 64103249
+P 3650 4900
+F 0 "JP1" H 3450 4950 50  0000 C CNN
+F 1 "D7 BYPASS" H 4050 4950 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm" H 3650 4900 50  0001 C CNN
+F 3 "~" H 3650 4900 50  0001 C CNN
+	1    3650 4900
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:Jumper_NO_Small JP4
+U 1 1 64103850
+P 5650 4900
+F 0 "JP4" H 5450 4950 50  0000 C CNN
+F 1 "D4 BYPASS" H 6050 4950 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm" H 5650 4900 50  0001 C CNN
+F 3 "~" H 5650 4900 50  0001 C CNN
+	1    5650 4900
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	4350 5200 4350 5550
+Wire Wire Line
+	3200 3800 3200 3050
+Connection ~ 3300 3700
+$Comp
+L Device:Jumper_NO_Small JP2
+U 1 1 640FF24F
+P 3750 4900
+F 0 "JP2" H 3550 4950 50  0000 C CNN
+F 1 "D6 BYPASS" H 4150 4950 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm" H 3750 4900 50  0001 C CNN
+F 3 "~" H 3750 4900 50  0001 C CNN
+	1    3750 4900
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:Jumper_NO_Small JP3
+U 1 1 64103531
+P 5550 4900
+F 0 "JP3" H 5350 4950 50  0000 C CNN
+F 1 "D5 BYPASS" H 5950 4950 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm" H 5550 4900 50  0001 C CNN
+F 3 "~" H 5550 4900 50  0001 C CNN
+	1    5550 4900
+	0    1    -1   0   
+$EndComp
+$Comp
+L Connector:Conn_01x07_Female J4
+U 1 1 63ED7AE0
+P 4350 6700
+F 0 "J4" V 4450 6600 50  0000 C CNN
+F 1 "PAD 1" V 4450 6900 50  0000 C CNN
+F 2 "bla2:NES_pad_plug" H 4350 6700 50  0001 C CNN
+F 3 "~" H 4350 6700 50  0001 C CNN
+	1    4350 6700
+	0    -1   1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x07_Female J5
+U 1 1 63ED84F4
+P 3150 6700
+F 0 "J5" V 3250 6600 50  0000 C CNN
+F 1 "PAD 2" V 3250 6900 50  0000 C CNN
+F 2 "bla2:NES_pad_plug" H 3150 6700 50  0001 C CNN
+F 3 "~" H 3150 6700 50  0001 C CNN
+	1    3150 6700
+	0    -1   1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x07_Female J6
+U 1 1 63ED8D95
+P 2450 6700
+F 0 "J6" V 2550 6600 50  0000 C CNN
+F 1 "PAD 3" V 2550 6900 50  0000 C CNN
+F 2 "bla2:NES_pad_plug" H 2450 6700 50  0001 C CNN
+F 3 "~" H 2450 6700 50  0001 C CNN
+	1    2450 6700
+	0    -1   1    0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0116
+U 1 1 63EDA38F
+P 2150 6500
+F 0 "#PWR0116" H 2150 6250 50  0001 C CNN
+F 1 "GND" V 2150 6300 50  0000 C CNN
+F 2 "" H 2150 6500 50  0000 C CNN
+F 3 "" H 2150 6500 50  0000 C CNN
+	1    2150 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0117
+U 1 1 63EDB873
+P 2850 6500
+F 0 "#PWR0117" H 2850 6250 50  0001 C CNN
+F 1 "GND" V 2850 6300 50  0000 C CNN
+F 2 "" H 2850 6500 50  0000 C CNN
+F 3 "" H 2850 6500 50  0000 C CNN
+	1    2850 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0118
+U 1 1 63EDBDBE
+P 4050 6500
+F 0 "#PWR0118" H 4050 6250 50  0001 C CNN
+F 1 "GND" V 4050 6300 50  0000 C CNN
+F 2 "" H 4050 6500 50  0000 C CNN
+F 3 "" H 4050 6500 50  0000 C CNN
+	1    4050 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR0119
+U 1 1 63EDC359
+P 4750 6500
+F 0 "#PWR0119" H 4750 6250 50  0001 C CNN
+F 1 "GND" V 4750 6300 50  0000 C CNN
+F 2 "" H 4750 6500 50  0000 C CNN
+F 3 "" H 4750 6500 50  0000 C CNN
+	1    4750 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0120
+U 1 1 63EDC86B
+P 2550 6500
+F 0 "#PWR0120" H 2550 6350 50  0001 C CNN
+F 1 "VCC" V 2550 6700 50  0000 C CNN
+F 2 "" H 2550 6500 50  0000 C CNN
+F 3 "" H 2550 6500 50  0000 C CNN
+	1    2550 6500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0121
+U 1 1 63EDF51E
+P 3250 6500
+F 0 "#PWR0121" H 3250 6350 50  0001 C CNN
+F 1 "VCC" V 3250 6700 50  0000 C CNN
+F 2 "" H 3250 6500 50  0000 C CNN
+F 3 "" H 3250 6500 50  0000 C CNN
+	1    3250 6500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0122
+U 1 1 63EE007A
+P 4450 6500
+F 0 "#PWR0122" H 4450 6350 50  0001 C CNN
+F 1 "VCC" V 4450 6700 50  0000 C CNN
+F 2 "" H 4450 6500 50  0000 C CNN
+F 3 "" H 4450 6500 50  0000 C CNN
+	1    4450 6500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NES_backup-rescue:VCC #PWR0123
+U 1 1 63EE03FC
+P 5150 6500
+F 0 "#PWR0123" H 5150 6350 50  0001 C CNN
+F 1 "VCC" V 5150 6700 50  0000 C CNN
+F 2 "" H 5150 6500 50  0000 C CNN
+F 3 "" H 5150 6500 50  0000 C CNN
+	1    5150 6500
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 5200 5350 6500
+Wire Wire Line
+	5250 5200 5250 6500
+Wire Wire Line
+	5150 5200 5150 6050
+Wire Wire Line
+	5150 6050 5050 6050
+Wire Wire Line
+	5050 6050 5050 6500
+Wire Wire Line
+	4850 5200 4850 6000
+Wire Wire Line
+	4850 6000 4650 6000
+Wire Wire Line
+	4650 6000 4650 6500
+Wire Wire Line
+	4750 5200 4750 5950
+Wire Wire Line
+	4750 5950 4550 5950
+Wire Wire Line
+	4550 5950 4550 6500
+Wire Wire Line
+	4650 5200 4650 5900
+Wire Wire Line
+	4650 5900 4350 5900
+Wire Wire Line
+	4350 5900 4350 6500
+Wire Wire Line
+	2950 5200 2950 6000
+Wire Wire Line
+	2950 6000 2750 6000
+Wire Wire Line
+	2750 6000 2750 6500
+Wire Wire Line
+	2850 5200 2850 5950
+Wire Wire Line
+	2850 5950 2650 5950
+Wire Wire Line
+	2650 5950 2650 6500
+Wire Wire Line
+	2450 6500 2450 5900
+Wire Wire Line
+	2450 5900 2750 5900
+Wire Wire Line
+	2750 5900 2750 5200
+Wire Wire Line
+	3450 5200 3450 6500
+Wire Wire Line
+	3350 5200 3350 6500
+Wire Wire Line
+	3250 5200 3250 6050
+Wire Wire Line
+	3250 6050 3150 6050
+Wire Wire Line
+	3150 6050 3150 6500
+Wire Wire Line
+	2650 5200 2650 5250
+Wire Wire Line
+	3150 5200 3150 5350
+Wire Wire Line
+	4550 5200 4550 5250
+Wire Wire Line
+	5050 5200 5050 5350
+Wire Wire Line
+	3650 4800 3650 3800
+Wire Wire Line
+	3650 3800 3200 3800
+Wire Wire Line
+	3750 4800 3750 3700
+Wire Wire Line
+	3750 3700 3300 3700
+Wire Wire Line
+	5550 4800 5550 3600
+Wire Wire Line
+	3400 3600 4700 3600
+Wire Wire Line
+	5650 4800 5650 3500
+Wire Wire Line
+	3500 3500 5200 3500
+Wire Wire Line
+	3650 5250 2650 5250
+Connection ~ 2650 5250
+Wire Wire Line
+	2650 5250 2650 5650
+Wire Wire Line
+	3650 5000 3650 5250
+Wire Wire Line
+	3750 5000 3750 5350
+Wire Wire Line
+	3750 5350 3150 5350
+Connection ~ 3150 5350
+Wire Wire Line
+	3150 5350 3150 5650
+Wire Wire Line
+	5550 5000 5550 5250
+Wire Wire Line
+	5550 5250 4550 5250
+Connection ~ 4550 5250
+Wire Wire Line
+	4550 5250 4550 5650
+Wire Wire Line
+	5650 5000 5650 5350
+Wire Wire Line
+	5650 5350 5050 5350
+Connection ~ 5050 5350
+Wire Wire Line
+	5050 5350 5050 5650
+Wire Wire Line
+	4700 4000 4700 3600
+Connection ~ 4700 3600
+Wire Wire Line
+	4700 3600 5550 3600
+Wire Wire Line
+	5200 4000 5200 3500
+Connection ~ 5200 3500
+Wire Wire Line
+	5200 3500 5650 3500
+Wire Wire Line
+	7100 4000 7100 3900
+Wire Wire Line
+	7100 3900 6800 3900
+Wire Wire Line
+	6800 3900 6800 4000
+Wire Wire Line
+	6500 4000 6500 3900
+Connection ~ 6800 3900
+Wire Wire Line
+	6500 3900 6800 3900
+Connection ~ 6500 3900
+Wire Wire Line
+	3800 3050 3800 3400
+Wire Wire Line
+	3800 3400 6400 3400
+Wire Wire Line
+	6400 3400 6400 4000
+Wire Wire Line
+	3900 3050 3900 3300
+Wire Wire Line
+	3900 3300 6700 3300
+Wire Wire Line
+	6700 3300 6700 4000
+Text Notes 7400 7500 0    60   ~ 0
+USB-NES + GAMEPADS
+$Comp
+L NES_backup-rescue:NES-CART J1
+U 1 1 5BD6C47C
+P 8400 3650
+F 0 "J1" H 8100 5700 60  0000 C CNN
+F 1 "NES-CART" H 8300 1500 60  0000 C CNN
+F 2 "BLA:NES_CART" H 8400 3850 60  0001 C CNN
+F 3 "" H 8400 3850 60  0000 C CNN
+	1    8400 3650
+	1    0    0    1   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR02
+U 1 1 5BD6C5A6
+P 8950 1650
+F 0 "#PWR02" H 8950 1400 50  0001 C CNN
+F 1 "GND" H 8950 1500 50  0000 C CNN
+F 2 "" H 8950 1650 50  0000 C CNN
+F 3 "" H 8950 1650 50  0000 C CNN
+	1    8950 1650
+	0    -1   1    0   
+$EndComp
+$Comp
+L NES_backup-rescue:GND #PWR03
+U 1 1 5BD6C73E
+P 7850 5550
+F 0 "#PWR03" H 7850 5300 50  0001 C CNN
+F 1 "GND" V 7850 5350 50  0000 C CNN
+F 2 "" H 7850 5550 50  0000 C CNN
+F 3 "" H 7850 5550 50  0000 C CNN
+	1    7850 5550
+	0    1    -1   0   
+$EndComp
+NoConn ~ 8950 5550
+NoConn ~ 8950 3950
+NoConn ~ 8950 3550
+NoConn ~ 7850 3950
+NoConn ~ 7850 3850
+NoConn ~ 7850 3750
+NoConn ~ 7850 3650
+NoConn ~ 7850 3550
+Text GLabel 7850 5450 0    60   Input ~ 0
+A11
+Text GLabel 7850 5350 0    60   Input ~ 0
+A10
+Text GLabel 7850 5250 0    60   Input ~ 0
+A9
+Text GLabel 7850 5150 0    60   Input ~ 0
+A8
+Text GLabel 7850 5050 0    60   Input ~ 0
+A7
+Text GLabel 7850 4950 0    60   Input ~ 0
+A6
+Text GLabel 7850 4850 0    60   Input ~ 0
+A5
+Text GLabel 7850 4750 0    60   Input ~ 0
+A4
+Text GLabel 7850 4650 0    60   Input ~ 0
+A3
+Text GLabel 7850 4550 0    60   Input ~ 0
+A2
+Text GLabel 7850 4450 0    60   Input ~ 0
+A1
+Text GLabel 7850 4350 0    60   Input ~ 0
+A0
+Text GLabel 7850 4250 0    60   Input ~ 0
+R/W
+Text GLabel 7850 4150 0    60   Input ~ 0
+~IRQ
+Text GLabel 8950 5450 2    60   Input ~ 0
+M2
+Text GLabel 8950 5350 2    60   Input ~ 0
+A12
+Text GLabel 8950 5250 2    60   Input ~ 0
+A13
+Text GLabel 8950 5150 2    60   Input ~ 0
+A14
+Text GLabel 8950 5050 2    60   Input ~ 0
+D7
+Text GLabel 8950 4950 2    60   Input ~ 0
+D6
+Text GLabel 8950 4850 2    60   Input ~ 0
+D5
+Text GLabel 8950 4750 2    60   Input ~ 0
+D4
+Text GLabel 8950 4650 2    60   Input ~ 0
+D3
+Text GLabel 8950 4550 2    60   Input ~ 0
+D2
+Text GLabel 8950 4450 2    60   Input ~ 0
+D1
+Text GLabel 8950 4350 2    60   Input ~ 0
+D0
+Text GLabel 8950 4250 2    60   Input ~ 0
+~ROMSEL
+Text GLabel 8950 3350 2    60   Input ~ 0
+~WR
+Text GLabel 8950 3150 2    60   Input ~ 0
+A14
+NoConn ~ 8950 3250
+Text GLabel 8950 3050 2    60   Input ~ 0
+A7
+Text GLabel 8950 2950 2    60   Input ~ 0
+A8
+Text GLabel 8950 2850 2    60   Input ~ 0
+A9
+Text GLabel 8950 2750 2    60   Input ~ 0
+A11
+Text GLabel 8950 2650 2    60   Input ~ 0
+A10
+Text GLabel 8950 2550 2    60   Input ~ 0
+A12
+Text GLabel 8950 2450 2    60   Input ~ 0
+A13
+Text GLabel 8950 2350 2    60   Input ~ 0
+D7
+Text GLabel 8950 2250 2    60   Input ~ 0
+D6
+Text GLabel 8950 2150 2    60   Input ~ 0
+D5
+Text GLabel 8950 2050 2    60   Input ~ 0
+D4
+Text GLabel 7850 3250 0    60   Input ~ 0
+~RD
+Text GLabel 7850 3150 0    60   Input ~ 0
+NT_A10
+Text GLabel 7850 3050 0    60   Input ~ 0
+A6
+Text GLabel 7850 2950 0    60   Input ~ 0
+A5
+Text GLabel 7850 2850 0    60   Input ~ 0
+A4
+Text GLabel 7850 2750 0    60   Input ~ 0
+A3
+Text GLabel 7850 2650 0    60   Input ~ 0
+A2
+Text GLabel 7850 2550 0    60   Input ~ 0
+A1
+Text GLabel 7850 2450 0    60   Input ~ 0
+A0
+Text GLabel 7850 2350 0    60   Input ~ 0
+D0
+Text GLabel 7850 2250 0    60   Input ~ 0
+D1
+Text GLabel 7850 2150 0    60   Input ~ 0
+D2
+Text GLabel 7850 2050 0    60   Input ~ 0
+D3
+NoConn ~ 8950 3750
+NoConn ~ 8950 1750
+NoConn ~ 8950 3850
+NoConn ~ 8950 1850
+NoConn ~ 7850 1850
+NoConn ~ 7850 1750
+Wire Wire Line
+	9050 3650 9050 3600
+Wire Wire Line
+	9050 3900 9050 3650
+$Comp
+L NES_backup-rescue:GND #PWR06
+U 1 1 5C23C2EB
+P 10150 3750
+F 0 "#PWR06" H 10150 3500 50  0001 C CNN
+F 1 "GND" H 10150 3600 50  0000 C CNN
+F 2 "" H 10150 3750 50  0000 C CNN
+F 3 "" H 10150 3750 50  0000 C CNN
+	1    10150 3750
+	0    -1   -1   0   
+$EndComp
+Connection ~ 9050 3650
+Connection ~ 9050 3900
+Wire Wire Line
+	9150 3900 9050 3900
+Wire Wire Line
+	8950 3650 9050 3650
+Wire Wire Line
+	9050 3500 9150 3500
+Wire Wire Line
+	9050 4000 9050 3900
+Wire Wire Line
+	9150 4000 9050 4000
+$Comp
+L NES_backup-rescue:MINI_PHONE_PLUG J2
+U 1 1 5C23C0C8
+P 9650 3750
+F 0 "J2" H 9650 4200 60  0000 C CNN
+F 1 "MINI_PHONE_PLUG" H 9750 3300 60  0000 C CNN
+F 2 "BLA:MINI_PHONE_PLUG" H 9650 3800 60  0001 C CNN
+F 3 "" H 9650 3800 60  0001 C CNN
+	1    9650 3750
+	1    0    0    1   
+$EndComp
+Connection ~ 9050 3600
+Wire Wire Line
+	9050 3600 9050 3500
+Wire Wire Line
+	9150 3600 9050 3600
+Wire Wire Line
+	2800 4000 2800 3800
+Wire Wire Line
+	2800 3800 3200 3800
+Connection ~ 3200 3800
+Connection ~ 5950 3900
+Wire Wire Line
+	5950 3900 6500 3900
+Wire Wire Line
+	3000 3900 5950 3900
+Wire Wire Line
+	7000 4000 7000 1950
+Wire Wire Line
+	5100 1650 5950 1650
+Connection ~ 5950 1650
+Wire Wire Line
+	5950 1650 6800 1650
+Wire Wire Line
+	7200 1650 7850 1650
+Text Notes 5700 6100 0    50   ~ 0
+PAD STROBE
+Text Notes 5700 6200 0    50   ~ 0
+PAD CLOCK
+Wire Wire Line
+	2350 6500 2350 6100
+Wire Wire Line
+	2350 6100 3050 6100
+Wire Wire Line
+	6500 5550 6500 6100
+Wire Wire Line
+	3050 6500 3050 6100
+Connection ~ 3050 6100
+Wire Wire Line
+	3050 6100 4250 6100
+Wire Wire Line
+	4250 6500 4250 6100
+Connection ~ 4250 6100
+Wire Wire Line
+	4250 6100 4950 6100
+Wire Wire Line
+	4950 6500 4950 6100
+Connection ~ 4950 6100
+Wire Wire Line
+	4950 6100 6500 6100
+Wire Wire Line
+	2250 6500 2250 6200
+Wire Wire Line
+	2250 6200 2950 6200
+Wire Wire Line
+	2950 6200 2950 6500
+Wire Wire Line
+	6800 6200 4850 6200
+Wire Wire Line
+	6800 5450 6800 6200
+Connection ~ 2950 6200
+Wire Wire Line
+	4150 6500 4150 6200
+Connection ~ 4150 6200
+Wire Wire Line
+	4150 6200 2950 6200
+Wire Wire Line
+	4850 6500 4850 6200
+Connection ~ 4850 6200
+Wire Wire Line
+	4850 6200 4150 6200
+Connection ~ 2450 2500
+Wire Wire Line
+	5950 3100 5950 3900
+Wire Wire Line
+	5950 2500 5950 2900
+$Comp
+L NES_backup-rescue:R_Small R1
+U 1 1 5BD6E612
+P 5950 3000
+F 0 "R1" H 5980 3020 50  0000 L CNN
+F 1 "10K" H 5980 2960 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 5950 3000 50  0001 C CNN
+F 3 "" H 5950 3000 50  0000 C CNN
+	1    5950 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x07_Female J3
+U 1 1 63ED72D1
+P 5050 6700
+F 0 "J3" V 5150 6600 50  0000 C CNN
+F 1 "PAD 0" V 5150 6900 50  0000 C CNN
+F 2 "bla2:NES_pad_plug" H 5050 6700 50  0001 C CNN
+F 3 "~" H 5050 6700 50  0001 C CNN
+	1    5050 6700
+	0    -1   1    0   
+$EndComp
+$EndSCHEMATC
