@@ -1,0 +1,425 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:NES_backup-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L NES-CART J1
+U 1 1 5BD6C47C
+P 4350 3550
+F 0 "J1" H 4050 5600 60  0000 C CNN
+F 1 "NES-CART" H 4250 1400 60  0000 C CNN
+F 2 "blue_pill:NES_CART" H 4350 3750 60  0001 C CNN
+F 3 "" H 4350 3750 60  0000 C CNN
+	1    4350 3550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 5BD6C51B
+P 7350 5000
+F 0 "#PWR01" H 7350 4750 50  0001 C CNN
+F 1 "GND" H 7350 4850 50  0000 C CNN
+F 2 "" H 7350 5000 50  0000 C CNN
+F 3 "" H 7350 5000 50  0000 C CNN
+	1    7350 5000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 4900 7350 5000
+Wire Wire Line
+	7450 4950 7450 4900
+Connection ~ 7350 4950
+Wire Wire Line
+	7250 4950 7250 4900
+Wire Wire Line
+	7150 4950 7150 4900
+Connection ~ 7250 4950
+Wire Wire Line
+	7550 4950 7550 4900
+Connection ~ 7450 4950
+$Comp
+L GND #PWR02
+U 1 1 5BD6C5A6
+P 3500 6700
+F 0 "#PWR02" H 3500 6450 50  0001 C CNN
+F 1 "GND" H 3500 6550 50  0000 C CNN
+F 2 "" H 3500 6700 50  0000 C CNN
+F 3 "" H 3500 6700 50  0000 C CNN
+	1    3500 6700
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5BD6C73E
+P 5400 1650
+F 0 "#PWR03" H 5400 1400 50  0001 C CNN
+F 1 "GND" H 5400 1500 50  0000 C CNN
+F 2 "" H 5400 1650 50  0000 C CNN
+F 3 "" H 5400 1650 50  0000 C CNN
+	1    5400 1650
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 3800 1650
+NoConn ~ 3800 3250
+NoConn ~ 3800 3550
+NoConn ~ 3800 3650
+NoConn ~ 4900 3250
+NoConn ~ 4900 3350
+NoConn ~ 4900 3450
+NoConn ~ 4900 3550
+NoConn ~ 4900 3650
+NoConn ~ 6500 2450
+NoConn ~ 6500 4450
+NoConn ~ 6500 4550
+NoConn ~ 7900 4350
+Text GLabel 7900 2650 2    60   Input ~ 0
+A8
+Text GLabel 7900 2750 2    60   Input ~ 0
+A9
+Text GLabel 7900 2850 2    60   Input ~ 0
+A10
+Text GLabel 7900 2950 2    60   Input ~ 0
+A11
+Text GLabel 7900 3050 2    60   Input ~ 0
+A12
+Text GLabel 7900 3150 2    60   Input ~ 0
+A13
+Text GLabel 7900 3250 2    60   Input ~ 0
+A14
+Text GLabel 7900 3350 2    60   Input ~ 0
+~ROMSEL
+Text GLabel 7900 3450 2    60   Input ~ 0
+M2
+Text GLabel 7900 3550 2    60   Input ~ 0
+R/W
+Text GLabel 7900 3650 2    60   Input ~ 0
+~IRQ
+NoConn ~ 7900 3750
+NoConn ~ 7900 3850
+Text GLabel 7900 3950 2    60   Input ~ 0
+NT_A10
+Text GLabel 7900 4050 2    60   Input ~ 0
+~RD
+Text GLabel 7900 4150 2    60   Input ~ 0
+~WR
+Text GLabel 6500 2650 0    60   Input ~ 0
+A0
+Text GLabel 6500 2750 0    60   Input ~ 0
+A1
+Text GLabel 6500 2850 0    60   Input ~ 0
+A2
+Text GLabel 6500 2950 0    60   Input ~ 0
+A3
+Text GLabel 6500 3050 0    60   Input ~ 0
+A4
+Text GLabel 6500 3150 0    60   Input ~ 0
+A5
+Text GLabel 6500 3250 0    60   Input ~ 0
+A6
+Text GLabel 6500 3350 0    60   Input ~ 0
+A7
+Text GLabel 6500 3450 0    60   Input ~ 0
+D0
+Text GLabel 6500 3550 0    60   Input ~ 0
+D1
+Text GLabel 6500 3650 0    60   Input ~ 0
+D2
+Text GLabel 6500 3750 0    60   Input ~ 0
+D3
+Text GLabel 6500 3850 0    60   Input ~ 0
+D4
+Text GLabel 6500 3950 0    60   Input ~ 0
+D5
+Text GLabel 6500 4050 0    60   Input ~ 0
+D6
+Text GLabel 6500 4150 0    60   Input ~ 0
+D7
+Text GLabel 4900 1750 2    60   Input ~ 0
+A11
+Text GLabel 4900 1850 2    60   Input ~ 0
+A10
+Text GLabel 4900 1950 2    60   Input ~ 0
+A9
+Text GLabel 4900 2050 2    60   Input ~ 0
+A8
+Text GLabel 4900 2150 2    60   Input ~ 0
+A7
+Text GLabel 4900 2250 2    60   Input ~ 0
+A6
+Text GLabel 4900 2350 2    60   Input ~ 0
+A5
+Text GLabel 4900 2450 2    60   Input ~ 0
+A4
+Text GLabel 4900 2550 2    60   Input ~ 0
+A3
+Text GLabel 4900 2650 2    60   Input ~ 0
+A2
+Text GLabel 4900 2750 2    60   Input ~ 0
+A1
+Text GLabel 4900 2850 2    60   Input ~ 0
+A0
+Text GLabel 4900 2950 2    60   Input ~ 0
+R/W
+Text GLabel 4900 3050 2    60   Input ~ 0
+~IRQ
+Text GLabel 3800 1750 0    60   Input ~ 0
+M2
+Text GLabel 3800 1850 0    60   Input ~ 0
+A12
+Text GLabel 3800 1950 0    60   Input ~ 0
+A13
+Text GLabel 3800 2050 0    60   Input ~ 0
+A14
+Text GLabel 3800 2150 0    60   Input ~ 0
+D7
+Text GLabel 3800 2250 0    60   Input ~ 0
+D6
+Text GLabel 3800 2350 0    60   Input ~ 0
+D5
+Text GLabel 3800 2450 0    60   Input ~ 0
+D4
+Text GLabel 3800 2550 0    60   Input ~ 0
+D3
+Text GLabel 3800 2650 0    60   Input ~ 0
+D2
+Text GLabel 3800 2750 0    60   Input ~ 0
+D1
+Text GLabel 3800 2850 0    60   Input ~ 0
+D0
+Text GLabel 3800 2950 0    60   Input ~ 0
+~ROMSEL
+Text GLabel 3800 3850 0    60   Input ~ 0
+~WR
+Text GLabel 3800 4050 0    60   Input ~ 0
+A14
+NoConn ~ 3800 3950
+Text GLabel 3800 4150 0    60   Input ~ 0
+A7
+Text GLabel 3800 4250 0    60   Input ~ 0
+A8
+Text GLabel 3800 4350 0    60   Input ~ 0
+A9
+Text GLabel 3800 4450 0    60   Input ~ 0
+A11
+Text GLabel 3800 4550 0    60   Input ~ 0
+A10
+Text GLabel 3800 4650 0    60   Input ~ 0
+A12
+Text GLabel 3800 4750 0    60   Input ~ 0
+A13
+Text GLabel 3800 4850 0    60   Input ~ 0
+D7
+Text GLabel 3800 4950 0    60   Input ~ 0
+D6
+Text GLabel 3800 5050 0    60   Input ~ 0
+D5
+Text GLabel 3800 5150 0    60   Input ~ 0
+D4
+Text GLabel 3800 3350 0    60   Input ~ 0
+EXP_8
+Text GLabel 4900 3950 2    60   Input ~ 0
+~RD
+Text GLabel 4900 4050 2    60   Input ~ 0
+NT_A10
+Text GLabel 4900 4150 2    60   Input ~ 0
+A6
+Text GLabel 4900 4250 2    60   Input ~ 0
+A5
+Text GLabel 4900 4350 2    60   Input ~ 0
+A4
+Text GLabel 4900 4450 2    60   Input ~ 0
+A3
+Text GLabel 4900 4550 2    60   Input ~ 0
+A2
+Text GLabel 4900 4650 2    60   Input ~ 0
+A1
+Text GLabel 4900 4750 2    60   Input ~ 0
+A0
+Text GLabel 4900 4850 2    60   Input ~ 0
+D0
+Text GLabel 4900 4950 2    60   Input ~ 0
+D1
+Text GLabel 4900 5050 2    60   Input ~ 0
+D2
+Text GLabel 4900 5150 2    60   Input ~ 0
+D3
+$Comp
+L R_Small R1
+U 1 1 5BD6E612
+P 6100 3350
+F 0 "R1" H 6130 3370 50  0000 L CNN
+F 1 "10K" H 6130 3310 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" H 6100 3350 50  0001 C CNN
+F 3 "" H 6100 3350 50  0000 C CNN
+	1    6100 3350
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 1950 6100 1950
+Wire Wire Line
+	6100 1950 6100 3250
+NoConn ~ 7200 1950
+NoConn ~ 7300 1950
+NoConn ~ 7400 1950
+$Comp
+L GND #PWR04
+U 1 1 5BD78A12
+P 5800 4800
+F 0 "#PWR04" H 5800 4550 50  0001 C CNN
+F 1 "GND" H 5800 4650 50  0000 C CNN
+F 2 "" H 5800 4800 50  0000 C CNN
+F 3 "" H 5800 4800 50  0000 C CNN
+	1    5800 4800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L AVR-ISP-6 CON1
+U 1 1 5BD7AE9D
+P 4350 6450
+F 0 "CON1" H 4245 6690 50  0000 C CNN
+F 1 "AVR-ISP-6" H 4085 6220 50  0000 L BNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" V 3830 6490 50  0001 C CNN
+F 3 "" H 4325 6450 50  0000 C CNN
+	1    4350 6450
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 3800 3450
+Text GLabel 4900 5350 2    60   Input ~ 0
+S0
+Text GLabel 4900 5450 2    60   Input ~ 0
+S1
+Text GLabel 3800 5350 0    60   Input ~ 0
+S2
+NoConn ~ 3800 5450
+Text GLabel 4900 6350 2    60   Input ~ 0
+S0
+Text GLabel 4900 6450 2    60   Input ~ 0
+S2
+Text GLabel 4900 6550 2    60   Input ~ 0
+EXP_8
+Text GLabel 3800 6450 0    60   Input ~ 0
+S1
+Wire Wire Line
+	3800 6450 4250 6450
+Wire Wire Line
+	4900 6550 4500 6550
+Wire Wire Line
+	4900 6450 4500 6450
+Wire Wire Line
+	4900 6350 4500 6350
+Wire Wire Line
+	3500 6700 3500 5550
+Connection ~ 3500 6550
+NoConn ~ 4250 6350
+Wire Wire Line
+	3500 5550 3800 5550
+Wire Wire Line
+	7150 4950 7550 4950
+Wire Wire Line
+	4250 6550 3500 6550
+Wire Wire Line
+	7900 2450 8500 2450
+Wire Wire Line
+	8500 2450 8500 5550
+Wire Wire Line
+	5400 1650 4900 1650
+$Comp
+L 74AHCT1G125 U1
+U 1 1 5BDDC933
+P 6100 4800
+F 0 "U1" V 6250 4900 50  0000 L BNN
+F 1 "74AHCT1G125" V 6300 4900 50  0000 L TNN
+F 2 "TO_SOT_Packages_SMD:SOT-353_SC-70-5" H 6100 4800 50  0001 C CNN
+F 3 "" H 6100 4800 50  0000 C CNN
+	1    6100 4800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6500 4350 6100 4350
+Wire Wire Line
+	6100 4350 6100 3450
+Connection ~ 6100 4350
+$Comp
+L TSM500P02CX Q1
+U 1 1 5BDDCDF9
+P 6100 5450
+F 0 "Q1" V 6000 5300 50  0000 R CNN
+F 1 "TSM500P02CX" V 6350 5700 50  0000 R CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 6300 5550 50  0001 C CNN
+F 3 "" H 6100 5450 50  0000 C CNN
+	1    6100 5450
+	0    -1   1    0   
+$EndComp
+$Comp
+L VCC #PWR05
+U 1 1 5BDDCF51
+P 6700 5500
+F 0 "#PWR05" H 6700 5350 50  0001 C CNN
+F 1 "VCC" H 6700 5650 50  0000 C CNN
+F 2 "" H 6700 5500 50  0000 C CNN
+F 3 "" H 6700 5500 50  0000 C CNN
+	1    6700 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 5500 6700 5550
+Connection ~ 6700 5550
+Text Notes 7900 7500 0    60   ~ 0
+NES-BACKUP cart reader and flashing device
+$Comp
+L BLUE_PILL U2
+U 1 1 5BDDDE7E
+P 7200 3400
+F 0 "U2" H 7200 3550 60  0000 C CNN
+F 1 "BLUE_PILL" H 7200 3450 60  0000 C CNN
+F 2 "blue_pill:blue_pill" H 7250 3150 60  0001 C CNN
+F 3 "" H 7250 3150 60  0001 C CNN
+	1    7200 3400
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 5550 6300 5550
+Wire Wire Line
+	5900 5550 4900 5550
+$EndSCHEMATC

@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name NES_backup-rescue)(type Legacy)(uri ${KIPRJMOD}/NES_backup-rescue.lib)(options "")(descr ""))
+)

@@ -1,0 +1,9 @@
+### Module positions - created on 11/18/18 17:45:59 ###
+### Printed by Pcbnew version kicad 4.0.4-stable
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val          Package                PosX       PosY       Rot  Side
+Q1        TSM500P02CX  SOT-23             458.2913  -298.8573  270.0000  top
+R1        10K          R_0402             581.1500  -319.8500    0.0000  top
+U1        74AHCT1G125  SOT-353_SC-70-5    458.1413  -302.4573    0.0000  top
+## End
