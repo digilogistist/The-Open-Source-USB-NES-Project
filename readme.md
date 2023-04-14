@@ -13,12 +13,12 @@ usbnes.com
 - Firmware binaries (composite and discrete)
 - PCB engineering files (USB-NES, NES-BACKUP and new NES-FASTGFX)
 - Serial wire debug wiring diagram
-- Technical Documentations
+- Technical documentations
 - Quick setup guide print-out
 - DIY kit guide print-out (manufacturing instructions)
 - Owner's manual PDF
 - 3D case models
-- Manufacturing BOMs
+- Manufacturing BOMs and part source links
 - Photo gallery
 
 
@@ -94,12 +94,12 @@ Both USB-NES-02 and NES-BACKUP-02 are electrically identical products, and diffe
 
 The NES-BACKUP-02 PCB predates USB-NES-02, and does not have a nice shell design like for USB-NES Lite.  Note the only feature of this PCB is the 6-pin header that connects to the NES cartridge CIC pins, for easy AVR CIclone boardset programming.  Only 11 NES-BACKUP-01 units are currently known to exist.  Note there is no corner mounting holes, nor is there a footprint for the necessary electrolytic capacitor in this design, which are bugs that need addressing.  The -02 revision fixes a footprint pinout bug present on the -01 models, involving the orientation of the power MOSFET component.
 
-USB-NES-02 is a better follow-up PCB to the aforementioned design, that adds in an experimental mini phone plug for theoretical expansion audio access, and leaves room in the front for further possible expansions like NES gamepad ports and such.  At least 100 USB-NES-01 PCB assemblies are known to exist, and many of these have been assembled into complete USB-NES Lite consumer units.  Note there is no footprint for the necessary electrolytic capacitor in this design, but it is possible to piggy-back solder it onto existing points on the PCB assembly (see manufacturing instructions).  A 1.6 mm PCB thickness is strongly recommended for manufacturing USB-NES-02.  All USB-NES firmware binaries mentioned in this document are intended for USB-NES-02.
+USB-NES-02 is a better follow-up PCB to the aforementioned design, that adds in an experimental mini phone plug for theoretical expansion audio access, and leaves room in the front for further possible expansions like NES gamepad ports and such.  At least 100 USB-NES-01 PCB assemblies are known to exist, and many of these have been assembled into complete USB-NES Lite consumer units.  Note there is no footprint for the necessary electrolytic capacitor in this design, but it is possible to piggy-back solder it onto existing points on the PCB assembly (see /cap_add/ for pix).  A 1.6 mm PCB thickness is strongly recommended for manufacturing USB-NES-02.  All USB-NES firmware binaries mentioned in this document are intended for USB-NES-02.
 
 USB-NES-04 is an enhanced version of the previous design that adds four controller ports to the USB-NES.  There is no firmware that exists yet to take advantage of the enhancements in this hardware design.  Moreover, no PCBs nor related shell designs have yet been manufactured for this either.  More info here:  
 https://youtu.be/dRpi10Yrjks
 
-NES-FASTGFX-01 is a completely original concept NES cart mapper PCB design made for new NES game development.  A complete manufacturing BOM + working (as of 04-13-2023) parts source list for NES-FASTGFX-01 can be found in "/PCB (NES-FASTGFX-01)/BOM-FASTGFX.ods"
+NES-FASTGFX-01 is a completely original concept NES cart mapper (1.2 mm thick) PCB design made for new NES game development.  A complete manufacturing BOM + working (as of 04-13-2023) parts source list for NES-FASTGFX-01 can be found in "/PCB (NES-FASTGFX-01)/BOM-FASTGFX.ods"
 
 ### NES-FASTGFX-01 Specs
 - 512 K byte PRG flash (SST39SF040)
@@ -132,7 +132,7 @@ Subsequently however, once I had built NES-BACKUP and started testing out the NE
 
 Then three years later, I reworked a second NES-RED-PILL board to discover that the CHR-flash on the first board was actually fried.  Apparently, all the initial testing I was doing on these boards before reworking them was enough to cause the CHR-flash chip on one board to partially self-destruct, and cause it to always fail a full flash memory programming test.  But now, the second reworked board was flashing perfectly using USB-NES!  So now I know what I did wrong, and how to do it right this time.
 
-I took everything I learned from that first costly and disappointing NES-RED-PILL production disaster, trimmed the fat and tweaked the ideas, and made NES-FASTGFX: a state-of-the-art, open-source, graphics expansion NES development cartridge boardset PCB design, that adds powerful extensions to the NES architecture with a simplified programming environment, and a handful of easy-to-source boardset parts.
+I took everything I learned from that first costly and disappointing NES-RED-PILL production disaster, trimmed the fat and tweaked the ideas, and made NES-FASTGFX: a state-of-the-art, open-source, graphics expansion NES development cartridge boardset PCB design, that adds powerful extensions to the NES architecture with a simplified programming environment, using a handful of easy-to-source boardset parts.
 
 USB-NES support for NES-FASTGFX boardset development with full drag + drop PRG-flashing is speculated down the road, using existing methods in the USB-NES source code that have been 100% tested and confirmed working on reworked NES-RED-PILL-02 flash boards.  More info on the NES-RED-PILL can be seen here:
 
@@ -199,8 +199,8 @@ And of course, the reader
 
 ## License
 
-USB middleware and other source code portions, copyright ST Microelectronics.  This copywritten work is included here for "fair use" and educational purposes only.
+Copywritten works, such as technical manuals and source code included in this repository are for educational and preservational "fair use" purposes only.  No copyright infringement is implied, solicited nor intended with the inclusion of these copywritten works for the Open-Source USB-NES Project.
 
-Except for source code explicitly copyrighted by ST Microelectronics, the rest of the work in this archive is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+The rest of the work in this archive, including any BTTD Group or Brad Taylor properties, is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 
 http://creativecommons.org/licenses/by-sa/4.0/
