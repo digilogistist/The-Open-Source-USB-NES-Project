@@ -1,0 +1,38 @@
+blue pill <---> NES interface
+Note CPU and PPU data and address lines are tied together
+
+pa00	 o	A8
+pa01	 o	A9
+pa02	 o	A10
+pa03	 o	A11
+pa04	 o	A12
+pa05	 o	A13
+pa06	 o	A14 (PPU /A13)
+pa07	 o	/ROMSEL
+pa08	 o	M2
+pa09	 o	CPU R/W
+pa10	i	IRQ
+pa11
+pa12
+pa13	i	NT.A10
+pa14	 o	PPU /RD
+pa15	 o	PPU /WR
+
+pb00	 o	A0
+pb01	 o	A1
+pb02	 o	A2
+pb03	 o	A3
+pb04	 o	A4
+pb05	 o	A5
+pb06	 o	A6
+pb07	 o	A7
+pb08	io	D0
+pb09	io	D1
+pb10	io	D2
+pb11	io	D3
+pb12	io	D4
+pb13	io	D5
+pb14	io	D6
+pb15	io	D7
+
+pc13	 o	/POWER
