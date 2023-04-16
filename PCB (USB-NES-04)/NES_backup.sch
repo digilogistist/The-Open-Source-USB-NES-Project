@@ -760,7 +760,7 @@ Wire Wire Line
 Wire Wire Line
 	6700 3300 6700 4000
 Text Notes 7400 7500 0    60   ~ 12
-USB-NES-02
+USB-NES-04
 $Comp
 L NES_backup-rescue:NES-CART J1
 U 1 1 5BD6C47C
