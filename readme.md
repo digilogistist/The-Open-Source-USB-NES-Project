@@ -185,7 +185,7 @@ Wolf
 Disch  
 Kevtris  
 Bootgod  
-Bregalad  
+Breglad  
 Memblers  
 jeffqchen  
 NEScartDB  
