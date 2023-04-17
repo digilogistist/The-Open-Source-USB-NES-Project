@@ -184,12 +184,14 @@ Henry Hoy
 Wolf  
 Loopy  
 Disch  
+Dwedit  
 Blarrg  
 Tepples  
 Kevtris  
 Bootgod  
 Bregalad  
 Bananmos  
+Tokumaru  
 Lidnariq  
 Ulfalizer  
 Rainwarrior  
