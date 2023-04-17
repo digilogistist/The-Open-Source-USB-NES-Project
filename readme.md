@@ -188,7 +188,7 @@ Blarrg
 Tepples  
 Kevtris  
 Bootgod  
-Breglad  
+Bregalad  
 Bananmos  
 Lidnariq  
 Ulfalizer  
