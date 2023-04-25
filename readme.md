@@ -186,6 +186,7 @@ Loopy
 Disch  
 Dwedit  
 Blarrg  
+nocash
 Tepples  
 Kevtris  
 Bootgod  
@@ -195,6 +196,7 @@ Tokumaru
 Lidnariq  
 Ulfalizer  
 Rainwarrior  
+infiniteneslives  
 beannaich  
 Quietust  
 Memblers  
